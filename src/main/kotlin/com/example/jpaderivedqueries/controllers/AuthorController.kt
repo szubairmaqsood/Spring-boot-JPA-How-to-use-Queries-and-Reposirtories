@@ -50,5 +50,28 @@ class AuthorController {
 
     }
 
+    @GetMapping("api/v1/Author/FindAuthorByBookTitle/{title}")
+    fun findAuthorByBookTitle(@PathVariable title:String): ResponseEntity<Optional<MutableList<Author>>> {
+        var authors:Optional<MutableList<Author>> = this.authorService.findByBookTitle(title);
+        if(authors.isPresent){
+            return  ResponseEntity(authors, HttpStatus.OK);
+        }else{
+            return  ResponseEntity.notFound().build();
+        }
+
+    }
+
+    @GetMapping("api/v1/Author/findByFirstNameContainingIgnoreCase/{firstName}")
+    fun findByFirstNameContainingIgnoreCase(@PathVariable firstName:String): ResponseEntity<Optional<MutableList<Author>>> {
+        var authors:Optional<MutableList<Author>> = this.authorService.findByFirstNameContainingIgnoreCase(firstName);
+        if(authors.isPresent){
+            return  ResponseEntity(authors, HttpStatus.OK);
+        }else{
+            return  ResponseEntity.notFound().build();
+        }
+
+    }
+
+
 
 }

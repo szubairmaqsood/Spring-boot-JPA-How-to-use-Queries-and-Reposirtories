@@ -38,6 +38,23 @@ class AuthorService {
         return authors;
     }
 
+    /*
+    Find by book Title
+
+     */
+    fun findByBookTitle(title:String):Optional<MutableList<Author>>{
+        var authors  :Optional<MutableList<Author>> = this.authorRepository.findByBooksTitle(title);
+        return authors;
+    }
+    /*
+    Find a author whose first name contains provided string
+    Ignore case of data in data base as well case of provided string
+     */
+    fun findByFirstNameContainingIgnoreCase(firstName:String):Optional<MutableList<Author>>{
+        var authors  :Optional<MutableList<Author>> = this.authorRepository.findByFirstNameContainingIgnoreCase(firstName);
+        return authors;
+    }
+
 
 
 

@@ -10,8 +10,19 @@ class Book {
     private var id:Long;
     private var version:Int;
     private var title:String;
+    /*
+    It is for many to many relationship
+    join column is for this model
+    and Inverse join column is for other model
+     */
     @ManyToMany
-    @JoinTable
+    @JoinTable( name = "book_author",
+                joinColumns = [ JoinColumn(name ="fk_books")],
+                inverseJoinColumns= [ JoinColumn(name ="fk_author")]
+    )
+
+
+
     private var authors:MutableList<Author>?;
 
     constructor(){
